@@ -1,0 +1,19 @@
+const express = require('express');
+const bundule = require('../model/top-offers');
+const router = express.Router();
+
+const soft = bundule.softDrinks;
+
+router.get('/soft-drinks', function(req, res, next) {
+    soft.find({}).then(function(tready) {
+        res.send(tready);
+    }).catch(next);
+});
+
+router.post('/soft-drinks', function(req, res, next) {
+    soft.create(req.body).then(function(ready) {
+        res.send(ready);
+    }).catch(next);
+});
+
+module.exports = router;
